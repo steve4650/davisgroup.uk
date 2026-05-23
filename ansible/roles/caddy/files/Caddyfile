@@ -3,19 +3,23 @@
 }
 
 janie.page {
+  redir https://davisgroup.uk{uri} permanent
+}
+
+davisgroup.uk {
   root * /var/www/html
   file_server {
     precompressed gzip zstd
   }
 }
 
-ip.janie.page {
+ip.davisgroup.uk {
   templates
   header Content-Type text/plain
   respond "{{.RemoteIP}}"
 }
 
-gnuplex.janie.page {
+gnuplex.davisgroup.uk {
   redir / https://github.com/janie314/gnuplex
   redir /install.sh https://raw.githubusercontent.com/janie314/gnuplex/refs/heads/main/install_files/install.sh
 }
