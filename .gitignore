@@ -5,3 +5,4 @@ node_modules
 __pycache__
 **/.vite
 ansible/roles/andromeda/files/*
+.ruff_cache
