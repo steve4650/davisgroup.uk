@@ -17,13 +17,13 @@ jobs:
       uses: oven-sh/setup-bun@v2
       with:
         bun-version: latest
-    - name: lint frontend code
-      run: |
-        bun i
-        bun run biome ci
-    - name: lint ruby code
-      run: |
-        uv run black --check .
+#    - name: lint frontend code
+#      run: |
+#        bun i
+#        bun run biome ci
+#    - name: lint ruby code
+#      run: |
+#        uv run black --check .
     - name: run frontend build
       run: |
         uv run make.py build

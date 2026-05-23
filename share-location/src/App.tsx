@@ -34,7 +34,7 @@ function App() {
 
   useEffect(() => {
     setShareData(
-      `My location\n\nGoogle Maps link: https://maps.google.com/?q=${pos.latitude},${pos.longitude}\n\nApple Maps link: https://maps.apple.com/?q=${pos.latitude},${pos.longitude}\n\nhttps://janie.page/share-location`,
+      `My location\n\nGoogle Maps link: https://maps.google.com/?q=${pos.latitude},${pos.longitude}\n\nApple Maps link: https://maps.apple.com/?q=${pos.latitude},${pos.longitude}\n\nhttps://davisgroup.uk/share-location`,
     );
   }, [pos]);
 
@@ -67,7 +67,7 @@ function App() {
   return (
     <div className="App">
       <span className="title">
-        <a href="https://janie.page">janie.page</a> - Share Location
+        <a href="https://davisgroup.uk">davisgroup.uk</a> - Share Location
       </span>
       <a href={`https://maps.google.com/?q=${pos.latitude},${pos.longitude}`}>
         Google Maps

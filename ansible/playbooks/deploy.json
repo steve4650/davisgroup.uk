@@ -1,6 +1,6 @@
 [
   {
-    "name": "janie.page deployment",
+    "name": "davisgroup.uk deployment",
     "hosts": "targets",
     "strategy": "free",
     "roles": [

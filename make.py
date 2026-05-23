@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Task runner for janie.page.
+"""Task runner for davisgroup.uk.
 
 Usage:
     uv run make.py [task]
@@ -100,7 +100,7 @@ def deploy() -> None:
         str(ROOT / "ansible" / "playbooks" / "deploy.json"),
         env=env,
     )
-    sh("rsync", "-r", "--delete", "./dist/", "janie.page:/var/www/html-predeploy")
+    sh("rsync", "-r", "--delete", "./dist/", "steve@davisgroup.uk:/var/www/html-predeploy")
 
 
 def dev() -> None:
@@ -108,7 +108,7 @@ def dev() -> None:
 
 
 def fmt() -> None:
-    sh("uv", "run", "black", ".")
+    sh("uv", "run", "ruff", "check", "--fix", "--unsafe-fixes")
     sh("bun", "run", "biome", "format", "--write")
 
 
@@ -134,10 +134,7 @@ def print_help() -> None:
 
 
 def main() -> int:
-    if len(sys.argv) <= 1:
-        task_name = "fmt"
-    else:
-        task_name = sys.argv[1]
+    task_name = "fmt" if len(sys.argv) <= 1 else sys.argv[1]
 
     task = tasks.get(task_name)
     if task is None:

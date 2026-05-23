@@ -3,9 +3,9 @@
     "tags": "users",
     "block": [
       {
-        "name": "Create janie user in wheel group",
+        "name": "Create steve user in wheel group",
         "ansible.builtin.user": {
-          "name": "janie",
+          "name": "steve",
           "groups": "wheel",
           "append": true
         },

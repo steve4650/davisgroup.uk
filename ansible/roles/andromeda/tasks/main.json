@@ -35,8 +35,8 @@
       {
         "name": "Install Andromeda private key",
         "ansible.builtin.copy": {
-          "src": "janie.page.priv",
-          "dest": "/etc/wireguard/janie.page.priv",
+          "src": "davisgroup.uk.priv",
+          "dest": "/etc/wireguard/davisgroup.uk.priv",
           "owner": "root",
           "group": "root",
           "mode": "0600",
@@ -50,8 +50,8 @@
       {
         "name": "Install Andromeda public key",
         "ansible.builtin.copy": {
-          "src": "janie.page.pub",
-          "dest": "/etc/wireguard/janie.page.pub",
+          "src": "davisgroup.uk.pub",
+          "dest": "/etc/wireguard/davisgroup.uk.pub",
           "owner": "root",
           "group": "root",
           "mode": "0600",

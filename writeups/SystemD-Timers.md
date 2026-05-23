@@ -30,19 +30,19 @@ Description=fedora backup service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/bash /home/janie/.local/bin/backup
-User=janie
+ExecStart=/usr/bin/bash /home/steve/.local/bin/backup
+User=steve
 Group=systemd-journal
 ```
 
-The contents of `/home/janie/.local/bin/backup` are as follows- notice the `-e`
+The contents of `/home/steve/.local/bin/backup` are as follows- notice the `-e`
 argument I had to pass to `rsync` to get it to work.
 
 ```bash
 #!/usr/bin/bash
-/usr/bin/rsync -av -e '/usr/bin/ssh -i /home/janie/.ssh/id_ed25519' \
+/usr/bin/rsync -av -e '/usr/bin/ssh -i /home/steve/.ssh/id_ed25519' \
 		--exclude Downloads \
-		/home/janie/ janie@0.0.0.0:/mnt/externalssd/fedora-laptop/
+		/home/steve/ steve@0.0.0.0:/mnt/externalssd/fedora-laptop/
 ```
 
 Finally, enable the service with `sudo systemctl enable fedorabackup.timer` and
