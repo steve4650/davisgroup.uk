@@ -100,7 +100,7 @@ def deploy() -> None:
         str(ROOT / "ansible" / "playbooks" / "deploy.json"),
         env=env,
     )
-    sh("rsync", "-r", "--delete", "./dist/", "davisgroup.uk:/var/www/html-predeploy")
+    sh("rsync", "-r", "--delete", "./dist/", "steve@davisgroup.uk:/var/www/html-predeploy")
 
 
 def dev() -> None:
