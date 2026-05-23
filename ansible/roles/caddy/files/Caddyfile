@@ -20,6 +20,6 @@ ip.davisgroup.uk {
 }
 
 gnuplex.davisgroup.uk {
-  redir / https://github.com/janie314/gnuplex
-  redir /install.sh https://raw.githubusercontent.com/janie314/gnuplex/refs/heads/main/install_files/install.sh
+  redir / https://github.com/steve4650/gnuplex
+  redir /install.sh https://raw.githubusercontent.com/steve4650/gnuplex/refs/heads/main/install_files/install.sh
 }
