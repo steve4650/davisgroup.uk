@@ -69,7 +69,7 @@ I schedule my alert system to run weekdays at 6am, 7am, and 8am using
 [cron](https://en.wikipedia.org/wiki/Cron).
 
 ```
-00 12,13,14 * * 1,2,3,4,5 /usr/bin/sh /home/janie/alert.sh
+00 12,13,14 * * 1,2,3,4,5 /usr/bin/sh /home/steve/alert.sh
 ```
 
 Here is what the end result looks like to a Discord user. Anyone who joins your
