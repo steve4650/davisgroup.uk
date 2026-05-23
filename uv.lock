@@ -3,7 +3,7 @@ revision = 3
 requires-python = ">=3.11"
 
 [[package]]
-name = "janie-page"
+name = "davisgroup-uk"
 version = "0.1.0"
 source = { virtual = "." }
 

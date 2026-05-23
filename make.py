@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Task runner for janie.page.
+"""Task runner for davisgroup.uk.
 
 Usage:
     uv run make.py [task]
@@ -100,7 +100,7 @@ def deploy() -> None:
         str(ROOT / "ansible" / "playbooks" / "deploy.json"),
         env=env,
     )
-    sh("rsync", "-r", "--delete", "./dist/", "janie.page:/var/www/html-predeploy")
+    sh("rsync", "-r", "--delete", "./dist/", "davisgroup.uk:/var/www/html-predeploy")
 
 
 def dev() -> None:

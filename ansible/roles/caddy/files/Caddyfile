@@ -2,7 +2,7 @@
   admin off
 }
 
-janie.page {
+davisgroup.uk {
   redir https://davisgroup.uk{uri} permanent
 }
 
