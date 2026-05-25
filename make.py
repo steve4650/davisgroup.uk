@@ -9,6 +9,7 @@ Default task: fmt
 
 from __future__ import annotations
 
+import csv
 import os
 import pathlib
 import subprocess
@@ -67,8 +68,30 @@ def compress() -> None:
 def build_static() -> None:
     sh("bash", str(ROOT / "writeups" / "compile"))
 
+
 def build_liturgical() -> None:
     sh("uv", "run", "liturgical/generate_ical.py")
+
+
+def csvlint() -> None:
+    csv_file = ROOT / "liturgical" / "liturgy.csv"
+    try:
+        with open(csv_file, newline="", encoding="utf-8") as f:
+            reader = csv.reader(f, strict=True)
+            expected_cols = None
+            for row_num, row in enumerate(reader, 1):
+                if expected_cols is None:
+                    expected_cols = len(row)
+                elif len(row) != expected_cols:
+                    print(
+                        f"✗ {csv_file} is invalid CSV: row {row_num} has {len(row)} columns, expected {expected_cols}",
+                        file=sys.stderr,
+                    )
+                    sys.exit(1)
+        print(f"✓ {csv_file} is valid CSV")
+    except csv.Error as e:
+        print(f"✗ {csv_file} is invalid CSV: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 def cp_static() -> None:
@@ -114,8 +137,10 @@ def dev() -> None:
 
 
 def fmt() -> None:
+    sh("uv", "run", "ruff", "format")
     sh("uv", "run", "ruff", "check", "--fix", "--unsafe-fixes")
-    sh("bun", "run", "biome", "format", "--write")
+    sh("bun", "run", "oxlint", "--fix", "--fix-dangerously")
+    sh("bun", "run", "oxfmt")
 
 
 tasks = {
@@ -124,6 +149,7 @@ tasks = {
     "build_static": build_static,
     "build_liturgical": build_liturgical,
     "cp_static": cp_static,
+    "csvlint": csvlint,
     "build": build,
     "deploy_test": deploy_test,
     "deploy": deploy,

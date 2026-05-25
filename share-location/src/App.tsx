@@ -69,19 +69,13 @@ function App() {
       <span className="title">
         <a href="https://davisgroup.uk">davisgroup.uk</a> - Share Location
       </span>
-      <a href={`https://maps.google.com/?q=${pos.latitude},${pos.longitude}`}>
-        Google Maps
-      </a>
-      <a href={`https://maps.apple.com/?q=${pos.latitude},${pos.longitude}`}>
-        Apple Maps
-      </a>
+      <a href={`https://maps.google.com/?q=${pos.latitude},${pos.longitude}`}>Google Maps</a>
+      <a href={`https://maps.apple.com/?q=${pos.latitude},${pos.longitude}`}>Apple Maps</a>
       <div>
         <input
           type="button"
           value="Share"
-          onClick={(_e) =>
-            navigator.share({ text: shareData, title: "My location" })
-          }
+          onClick={(_e) => navigator.share({ text: shareData, title: "My location" })}
         />
       </div>
 

@@ -35,21 +35,15 @@ function App() {
   };
 
   const input = currentInput === "html" ? inputRefs.html : inputRefs.css;
-  const oppositeInput =
-    currentInput === "html" ? inputRefs.css : inputRefs.html;
+  const oppositeInput = currentInput === "html" ? inputRefs.css : inputRefs.html;
 
-  function handleInput(
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    inputtype: string,
-  ) {
+  function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>, inputtype: string) {
     if (inputtype === "html") {
       setHtmlInputText(e.target.value);
     } else if (inputtype === "css") {
       setCssInputText(e.target.value);
     } else {
-      console.error(
-        `error 289139: invalid inputtype ${inputtype} passed to handleInput`,
-      );
+      console.error(`error 289139: invalid inputtype ${inputtype} passed to handleInput`);
       return;
     }
   }
@@ -72,9 +66,7 @@ function App() {
           const ind = str.slice(0, pos1).lastIndexOf("\n");
           if (ind !== -1) {
             const fullLineSel = str.slice(ind, pos2).replaceAll("\n", "\n\t");
-            input.setInputText(
-              str.slice(0, ind) + fullLineSel + str.slice(pos2),
-            );
+            input.setInputText(str.slice(0, ind) + fullLineSel + str.slice(pos2));
             setPos(pos2 + 1);
           } else {
             const fullLineSel = `\t${str.slice(0, pos2).replaceAll("\n", "\n\t")}`;
@@ -91,13 +83,9 @@ function App() {
       event.stopPropagation();
       const match = str
         .slice(str.slice(0, pos1).lastIndexOf("\n") + 1)
-        .match(
-          /^[ \f\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*/,
-        );
+        .match(/^[ \f\r\t\v\u00a0\u1680\u2000-\u200a\u2028\u2029\u202f\u205f\u3000\ufeff]*/);
       const lastNewline = match === null ? "" : match[0];
-      input.setInputText(
-        `${str.slice(0, pos1)}\n${lastNewline}${str.slice(pos1)}`,
-      );
+      input.setInputText(`${str.slice(0, pos1)}\n${lastNewline}${str.slice(pos1)}`);
       setPos(pos1 + 1 + lastNewline.length);
     }
   };
@@ -106,9 +94,7 @@ function App() {
     setDisplayOutput(
       `<html><head><style>${cssInputText}</style></head><body>${htmlInputText}</body></html>`,
     );
-    window.location.hash = encodeURI(
-      JSON.stringify({ html: htmlInputText, css: cssInputText }),
-    );
+    window.location.hash = encodeURI(JSON.stringify({ html: htmlInputText, css: cssInputText }));
   }, [htmlInputText, cssInputText]);
 
   useEffect(() => {
@@ -119,15 +105,9 @@ function App() {
   }, [pos]);
 
   return (
-    // biome-ignore lint/a11y/noStaticElementInteractions: idc
     <div className="app" onKeyDown={handleKeyDown}>
       <div className="panel-webview">
-        <iframe
-          title="Display HTML Output"
-          className="webview"
-          sandbox=""
-          srcDoc={displayOutput}
-        />
+        <iframe title="Display HTML Output" className="webview" sandbox="" srcDoc={displayOutput} />
       </div>
       <div className="panel-input">
         <textarea

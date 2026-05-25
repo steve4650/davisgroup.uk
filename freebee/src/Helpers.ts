@@ -16,10 +16,7 @@ function setURLHash(val: string | null) {
 }
 
 function saveState(puzzleID: string, answers: Answer[], totalScore: number) {
-  localStorage.setItem(
-    `freebee-${puzzleID}`,
-    JSON.stringify({ answers, total_score: totalScore }),
-  );
+  localStorage.setItem(`freebee-${puzzleID}`, JSON.stringify({ answers, total_score: totalScore }));
 }
 
 function loadState(puzzleID: string): StoredState {

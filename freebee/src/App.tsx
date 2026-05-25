@@ -80,9 +80,7 @@ function App() {
       <>
         <div className="flex flex-col bg-stone-800 w-full h-screen p-5 items-center">
           <div className="flex flex-row place-self-start pb-3">
-            <span className="font-sans text-3xl self-start text-white">
-              FreeBee🐝
-            </span>
+            <span className="font-sans text-3xl self-start text-white">FreeBee🐝</span>
             <button
               type="button"
               className="button bg-yellow-200 text-stone-800 ml-2 py-1 px-2"
@@ -120,10 +118,7 @@ function App() {
                 const n = score(letters, yellow, guess, words);
                 if (
                   n > 0 &&
-                  !answers.find(
-                    (x) =>
-                      x.word.toLowerCase() === e.target.value.toLowerCase(),
-                  )
+                  !answers.find((x) => x.word.toLowerCase() === e.target.value.toLowerCase())
                 ) {
                   setAnswers(
                     [
