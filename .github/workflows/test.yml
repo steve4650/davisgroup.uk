@@ -20,9 +20,9 @@ jobs:
       - name: lint frontend code
         run: |
           bun i
-          bun run oxfmt
+          bun run oxfmt --check
           bun run oxlint
-      - name: lint ruby code
+      - name: lint python code
         run: |
           uv run ruff format --check
           uv run ruff check
