@@ -16,12 +16,7 @@ interface Puzzles {
 }
 
 /** How much a given guess scores. */
-function score(
-  letters: string[],
-  yellow: string,
-  guess: string,
-  words: Dictionary | null,
-): number {
+function score(letters: string[], yellow: string, guess: string, words: Dictionary | null): number {
   const guess_cleaned = guess.trim().toUpperCase();
   if (words === null) {
     return 0;
@@ -51,11 +46,4 @@ function total_score(list: Answer[]): number {
   return list.reduce((sum: number, b: Answer): number => sum + b.score, 0);
 }
 
-export {
-  type Answer,
-  type Dictionary,
-  type Puzzles,
-  score,
-  sort_answers,
-  total_score,
-};
+export { type Answer, type Dictionary, type Puzzles, score, sort_answers, total_score };

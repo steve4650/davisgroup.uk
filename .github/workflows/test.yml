@@ -9,24 +9,26 @@ jobs:
     runs-on: ubuntu-latest
     name: testing and linting this branch
     steps:
-    - name: check out this repo
-      uses: actions/checkout@v6
-    - name: Install the latest version of uv
-      uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
-    - name: setup bun
-      uses: oven-sh/setup-bun@v2
-      with:
-        bun-version: latest
-#    - name: lint frontend code
-#      run: |
-#        bun i
-#        bun run biome ci
-#    - name: lint ruby code
-#      run: |
-#        uv run black --check .
-    - name: run frontend build
-      run: |
-        uv run make.py build
-    - name: check for TODOs
-      run: |
-        git ls-files frontend backend | xargs grep -Ii todo | wc -l | xargs ruby -e 'exit ARGV[0].to_i == 0'
+      - name: check out this repo
+        uses: actions/checkout@v6
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: lint frontend code
+        run: |
+          bun i
+          bun run oxfmt
+          bun run oxlint
+      - name: lint ruby code
+        run: |
+          uv run ruff format --check
+          uv run ruff check
+      - name: run frontend build
+        run: |
+          uv run make.py build
+      - name: check for TODOs
+        run: |
+          git ls-files frontend backend | xargs grep -Ii todo | wc -l | xargs python -c "import sys; sys.exit(0 if sys.stdin.read().strip()== '0' else 1)"

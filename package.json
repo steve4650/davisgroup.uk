@@ -1,6 +1,7 @@
 {
   "dependencies": {},
   "devDependencies": {
-    "@biomejs/biome": "2.4.15"
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0"
   }
 }

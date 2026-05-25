@@ -9,25 +9,23 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    "ruff>=0.15.14",
-]
+dev = ["ruff>=0.15.14"]
 
 [tool.ruff]
 line-length = 300
 
 [tool.ruff.lint]
 select = [
-    # pycodestyle
-    "E",
-    # Pyflakes
-    "F",
-    # pyupgrade
-    "UP",
-    # flake8-bugbear
-    "B",
-    # flake8-simplify
-    "SIM",
-    # isort
-    "I",
+  # pycodestyle
+  "E",
+  # Pyflakes
+  "F",
+  # pyupgrade
+  "UP",
+  # flake8-bugbear
+  "B",
+  # flake8-simplify
+  "SIM",
+  # isort
+  "I",
 ]
