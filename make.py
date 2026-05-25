@@ -64,8 +64,9 @@ def compress() -> None:
                 compressed.unlink()
 
 
-def build_md() -> None:
+def build_static() -> None:
     sh("bash", str(ROOT / "writeups" / "compile"))
+    sh("uv", "run", "liturgical/generate_ical.py")
 
 
 def cp_static() -> None:
@@ -74,7 +75,7 @@ def cp_static() -> None:
 
 def build() -> None:
     build_npm()
-    build_md()
+    build_static()
     cp_static()
     compress()
 
@@ -115,7 +116,7 @@ def fmt() -> None:
 tasks = {
     "build_npm": build_npm,
     "compress": compress,
-    "build_md": build_md,
+    "build_static": build_static,
     "cp_static": cp_static,
     "build": build,
     "deploy_test": deploy_test,
