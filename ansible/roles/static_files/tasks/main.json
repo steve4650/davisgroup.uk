@@ -33,6 +33,36 @@
         "become": "yes"
       },
       {
+        "name": "Create /var/www/secret/",
+        "ansible.builtin.file": {
+          "path": "/var/www/secret",
+          "state": "directory",
+          "mode": "0755",
+          "owner": "root",
+          "group": "root",
+          "seuser": "system_u",
+          "serole": "object_r",
+          "setype": "httpd_sys_content_t",
+          "selevel": "s0"
+        },
+        "become": "yes"
+      },
+      {
+        "name": "Create /var/www/secret-predeploy/",
+        "ansible.builtin.file": {
+          "path": "/var/www/secret-predeploy",
+          "state": "directory",
+          "mode": "0755",
+          "owner": "steve",
+          "group": "steve",
+          "seuser": "system_u",
+          "serole": "object_r",
+          "setype": "httpd_sys_content_t",
+          "selevel": "s0"
+        },
+        "become": "yes"
+      },
+      {
         "name": "Copy deploy.sh to /usr/local/bin/",
         "ansible.builtin.copy": {
           "src": "deploy.sh",
