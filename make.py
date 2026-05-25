@@ -9,11 +9,11 @@ Default task: fmt
 
 from __future__ import annotations
 
+import csv
 import os
 import pathlib
 import subprocess
 import sys
-import csv
 
 ROOT = pathlib.Path(__file__).resolve().parent
 NPM_APPS = ["share-location", "chikorita", "freebee"]
@@ -75,7 +75,7 @@ def build_liturgical() -> None:
 def csvlint() -> None:
     csv_file = ROOT / "liturgical" / "liturgy.csv"
     try:
-        with open(csv_file, 'r', newline='', encoding='utf-8') as f:
+        with open(csv_file, newline='', encoding='utf-8') as f:
             reader = csv.reader(f, strict=True)
             expected_cols = None
             for row_num, row in enumerate(reader, 1):
