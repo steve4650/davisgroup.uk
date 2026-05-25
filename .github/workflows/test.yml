@@ -26,6 +26,9 @@ jobs:
         run: |
           uv run ruff format --check
           uv run ruff check
+      - name: lint CSV
+        run: |
+          uv run make.py csvlint
       - name: run frontend build
         run: |
           uv run make.py build
