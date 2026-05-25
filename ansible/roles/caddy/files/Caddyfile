@@ -13,16 +13,6 @@ davisgroup.uk {
   }
 }
 
-secret.davisgroup.uk {
-  root * /var/www/secret
-  basic_auth {
-    secret insert_secret_here
-  }
-  file_server {
-    precompressed gzip zstd
-  }
-}
-
 ip.davisgroup.uk {
   templates
   header Content-Type text/plain
