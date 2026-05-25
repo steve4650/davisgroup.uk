@@ -115,7 +115,8 @@ def dev() -> None:
 
 def fmt() -> None:
     sh("uv", "run", "ruff", "check", "--fix", "--unsafe-fixes")
-    sh("bun", "run", "biome", "format", "--write")
+    sh("bun", "run", "oxlint", "--fix", "--fix-dangerously")
+    sh("bun", "run", "oxfmt")
 
 
 tasks = {
