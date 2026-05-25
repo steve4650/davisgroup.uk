@@ -66,6 +66,8 @@ def compress() -> None:
 
 def build_static() -> None:
     sh("bash", str(ROOT / "writeups" / "compile"))
+
+def build_liturgical() -> None:
     sh("uv", "run", "liturgical/generate_ical.py")
 
 
@@ -75,12 +77,14 @@ def cp_static() -> None:
 
 def build() -> None:
     build_npm()
+    build_liturgical()
     build_static()
     cp_static()
     compress()
 
 
 def deploy_test() -> None:
+    build()
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
         "ansible-playbook",
@@ -94,6 +98,7 @@ def deploy_test() -> None:
 
 
 def deploy() -> None:
+    build()
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
         "ansible-playbook",
@@ -117,6 +122,7 @@ tasks = {
     "build_npm": build_npm,
     "compress": compress,
     "build_static": build_static,
+    "build_liturgical": build_liturgical,
     "cp_static": cp_static,
     "build": build,
     "deploy_test": deploy_test,
@@ -127,7 +133,7 @@ tasks = {
 
 
 def print_help() -> None:
-    print("Usage: python make.py [task]\n")
+    print("Usage: uv run make.py [task]\n")
     print("Available tasks:")
     for name in sorted(tasks):
         print(f"  {name}")

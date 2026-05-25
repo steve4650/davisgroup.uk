@@ -11,7 +11,7 @@ import sys
 from icalendar import Calendar, Event
 
 CSV_FILENAME = "liturgy.csv"
-OUTPUT_FILENAME = "../static/liturgy.ics"
+OUTPUT_FILENAME = "../dist/liturgy.ics"
 QUALIFIER_FIELDS = ["Solemnity", "Holyday of Obligation", "Feast"]
 
 
@@ -51,7 +51,7 @@ def build_ical(events: list[dict[str, str]], now: datetime.datetime) -> str:
     calendar.add("version", "2.0")
     calendar.add("calscale", "GREGORIAN")
     calendar.add("method", "PUBLISH")
-    calendar.add("x-wr-calname", "Liturgical USCCB Liturgical Calendar")
+    calendar.add("x-wr-calname", "USCCB Liturgical Calendar")
 
     for row in events:
         try:
