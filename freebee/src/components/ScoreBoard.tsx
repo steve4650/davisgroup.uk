@@ -9,7 +9,7 @@ function ScoreBoard(props: { list: Answer[]; totalScore: number }) {
       {
         <>
           <span className="text-white underline underline-offset-2 my-1">{props.totalScore}</span>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-screen-xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 max-w-(--breakpoint-xl) mx-auto">
             {props.list.map((item) => (
               <span className="text-white uppercase" key={item.word}>
                 {`${item.word} (${item.score})`}
