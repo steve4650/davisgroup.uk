@@ -18,6 +18,7 @@ secret.davisgroup.uk {
   basicauth {
     secret {{ secret_davisgroup_uk_pass }}
   }
+  file_server browse
   file_server {
     precompressed gzip zstd
   }
