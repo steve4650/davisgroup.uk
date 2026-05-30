@@ -13,9 +13,9 @@ davisgroup.uk {
   }
 }
 
-secretdavisgroup.uk {
+secret.davisgroup.uk {
   root * /var/www/secret
-  basic_auth {
+  basicauth {
     secret {{ secret_davisgroup_uk_pass }}
   }
   file_server {
