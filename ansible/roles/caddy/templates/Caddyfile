@@ -13,10 +13,21 @@ davisgroup.uk {
   }
 }
 
+secret.davisgroup.uk {
+  root * /var/www/secret
+  basicauth {
+    secret {{ secret_davisgroup_uk_pass }}
+  }
+  file_server browse
+  file_server {
+    precompressed gzip zstd
+  }
+}
+
 ip.davisgroup.uk {
   templates
   header Content-Type text/plain
-  respond "{{.RemoteIP}}"
+  respond "{% raw %}{{.RemoteIP}}{% endraw %}"
 }
 
 gnuplex.davisgroup.uk {

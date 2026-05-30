@@ -4,7 +4,7 @@
 Usage:
     uv run make.py [task]
 
-Default task: fmt
+Run with no arguments to see available tasks.
 """
 
 from __future__ import annotations
@@ -167,7 +167,11 @@ def print_help() -> None:
 
 
 def main() -> int:
-    task_name = "fmt" if len(sys.argv) <= 1 else sys.argv[1]
+    if len(sys.argv) <= 1:
+        print_help()
+        return 0
+
+    task_name = sys.argv[1]
 
     task = tasks.get(task_name)
     if task is None:
