@@ -26,7 +26,7 @@ secretdavisgroup.uk {
 ip.davisgroup.uk {
   templates
   header Content-Type text/plain
-  respond "{{.RemoteIP}}"
+  respond "{% raw %}{{.RemoteIP}}{% endraw %}"
 }
 
 gnuplex.davisgroup.uk {
