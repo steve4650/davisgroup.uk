@@ -29,7 +29,7 @@ jobs:
       - name: lint CSV
         run: |
           uv run make.py csvlint
-      - name: run frontend build
+      - name: run build
         run: |
           uv run make.py build
       - name: check for TODOs

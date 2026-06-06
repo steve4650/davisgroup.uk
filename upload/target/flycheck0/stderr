@@ -1,0 +1,10 @@
+    Updating crates.io index
+error: failed to select a version for `tower-http`.
+    ... required by package `upload v0.1.0 (/home/steve/git/davisgroup.uk/upload)`
+versions that meet the requirements `^0.3` are: 0.3.5, 0.3.4, 0.3.3, 0.3.2, 0.3.1, 0.3.0
+
+package `upload` depends on `tower-http` with feature `serve` but `tower-http` does not have that feature.
+help: available features: add-extension, async-compression, auth, base64, catch-panic, compression-br, compression-deflate, compression-full, compression-gzip, cors, decompression-br, decompression-deflate, decompression-full, decompression-gzip, default, follow-redirect, fs, full, httpdate, iri-string, map-request-body, map-response-body, metrics, mime, mime_guess, percent-encoding, propagate-header, redirect, request-id, sensitive-headers, set-header, set-status, tokio, tokio-util, tower, trace, tracing, util
+
+
+failed to select a version for `tower-http` which could resolve this conflict
