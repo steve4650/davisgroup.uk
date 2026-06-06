@@ -5,7 +5,7 @@
       {
         "name": "Install DNF packages",
         "ansible.builtin.package": {
-          "name": ["chrony", "caddy", "wireguard-tools"],
+          "name": ["chrony", "wireguard-tools"],
           "state": "present"
         },
         "become": "yes",
