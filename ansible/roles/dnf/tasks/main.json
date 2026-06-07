@@ -3,6 +3,14 @@
     "tags": "dnf",
     "block": [
       {
+        "name": "enable caddy repo",
+        "community.general.copr": {
+          "name": "@caddy/caddy",
+          "state": "enabled"
+        },
+        "become": "yes"
+      },
+      {
         "name": "Install DNF packages",
         "ansible.builtin.package": {
           "name": ["chrony", "caddy", "wireguard-tools"],
