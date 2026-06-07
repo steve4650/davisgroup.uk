@@ -70,11 +70,11 @@ def build_static() -> None:
 
 
 def build_liturgical() -> None:
-    sh("uv", "run", "liturgical/generate_ical.py")
+    sh("uv", "run", "liturgical_calendar/generate_ical.py")
 
 
 def csvlint() -> None:
-    csv_file = ROOT / "liturgical" / "liturgy.csv"
+    csv_file = ROOT / "liturgical_calendar" / "liturgy.csv"
     try:
         with open(csv_file, newline="", encoding="utf-8") as f:
             reader = csv.reader(f, strict=True)

@@ -10,8 +10,8 @@ import sys
 
 from icalendar import Calendar, Event
 
-CSV_FILENAME = "liturgy.csv"
-OUTPUT_FILENAME = "../dist/liturgy.ics"
+CSV_FILENAME = "calendar.csv"
+OUTPUT_FILENAME = "../dist/liturgical_calendar.ics"
 QUALIFIER_FIELDS = ["Solemnity", "Holyday of Obligation", "Feast"]
 
 

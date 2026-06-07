@@ -27,6 +27,9 @@
 #root {
   margin: 3%;
 }
+.liturgical-cal-root {
+  max-width: 800px;
+}
 #mainbody {
   margin-top: 2%;
 }
@@ -68,6 +71,11 @@ h1 {
   font-weight: bold;
   margin-bottom: 1%;
 }
+.subtitle {
+  font: 1em sans-serif;
+  font-weight: bold;
+  margin-bottom: 1%;
+}
 #toc-title {
   font: 1.5em sans-serif;
   font-weight: bold;
@@ -82,4 +90,51 @@ code,
 
 #picdiv > * {
   margin-bottom: 4%;
+}
+
+ol,
+ul {
+  margin: 0.5rem 0 1rem 1.5rem;
+  padding: 0;
+}
+
+ul {
+  list-style: disc inside;
+}
+
+.copy-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.copy-link-row code {
+  display: inline-block;
+  background: #f5f5f5;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+#copy-button {
+  border: 1px solid #888;
+  background: #fff;
+  color: #000;
+  padding: 0.45rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#copy-button:hover,
+#copy-button:focus {
+  background: #f0f0f0;
+  border-color: #666;
+}
+
+#copy-button:focus {
+  outline: 3px solid rgba(0, 102, 204, 0.25);
 }
