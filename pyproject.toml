@@ -29,3 +29,8 @@ select = [
   # isort
   "I",
 ]
+
+[tool.uv.workspace]
+members = [
+    "readwrite",
+]
