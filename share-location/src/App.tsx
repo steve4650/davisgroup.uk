@@ -74,7 +74,11 @@ function App() {
       };
 
       setRecentLocations((current) => {
-        if (current.length > 0 && current[0].latitude === newEntry.latitude && current[0].longitude === newEntry.longitude) {
+        if (
+          current.length > 0 &&
+          current[0].latitude === newEntry.latitude &&
+          current[0].longitude === newEntry.longitude
+        ) {
           return current;
         }
         const next = [newEntry, ...current].slice(0, 20);
@@ -142,14 +146,22 @@ function App() {
         <a href="https://davisgroup.uk">davisgroup.uk</a> - Share Location
       </span>
       <a
-        href={pos.latitude !== null && pos.longitude !== null ? buildMapsLink(pos.latitude, pos.longitude, "google") : "#"}
+        href={
+          pos.latitude !== null && pos.longitude !== null
+            ? buildMapsLink(pos.latitude, pos.longitude, "google")
+            : "#"
+        }
         target="_blank"
         rel="noreferrer"
       >
         Google Maps
       </a>
       <a
-        href={pos.latitude !== null && pos.longitude !== null ? buildMapsLink(pos.latitude, pos.longitude, "apple") : "#"}
+        href={
+          pos.latitude !== null && pos.longitude !== null
+            ? buildMapsLink(pos.latitude, pos.longitude, "apple")
+            : "#"
+        }
         target="_blank"
         rel="noreferrer"
       >
@@ -174,11 +186,21 @@ function App() {
         <div className="recent-header">
           <h2>Recent locations</h2>
           <button type="button" className="clear-button" onClick={clearRecentLocations}>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "0.25rem", verticalAlign: "middle" }}>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              style={{ marginRight: "0.25rem", verticalAlign: "middle" }}
+            >
               <polyline points="3 6 5 6 21 6" />
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
             </svg>
-            Clear all recent locations
+            Clear all
           </button>
         </div>
         {recentLocations.length === 0 ? (
@@ -189,7 +211,8 @@ function App() {
               <li key={entry.timestamp}>
                 <div className="entry-info">
                   <span className="entry-label">
-                    {new Date(entry.timestamp).toLocaleString()} — {entry.latitude.toFixed(6)}, {entry.longitude.toFixed(6)}
+                    {new Date(entry.timestamp).toLocaleString()} — {entry.latitude.toFixed(6)},{" "}
+                    {entry.longitude.toFixed(6)}
                   </span>
                   {editingId === entry.timestamp ? (
                     <div className="entry-edit-note">
@@ -200,7 +223,10 @@ function App() {
                         rows={2}
                       />
                       <div className="note-buttons">
-                        <button type="button" onClick={() => saveNoteForEntry(entry.timestamp, editingNote)}>
+                        <button
+                          type="button"
+                          onClick={() => saveNoteForEntry(entry.timestamp, editingNote)}
+                        >
                           Save
                         </button>
                         <button type="button" onClick={cancelEditing}>
@@ -213,8 +239,23 @@ function App() {
                   ) : null}
                 </div>
                 <div className="entry-actions">
-                  <button type="button" className="icon-button" onClick={() => startEditingNote(entry)} title="Edit note">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: "middle" }}>
+                  <button
+                    type="button"
+                    className="icon-button"
+                    onClick={() => startEditingNote(entry)}
+                    title="Edit note"
+                  >
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ verticalAlign: "middle" }}
+                    >
                       <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                       <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
                     </svg>
@@ -230,16 +271,34 @@ function App() {
                     }
                     title="Share location"
                   >
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: "middle" }}>
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      style={{ verticalAlign: "middle" }}
+                    >
                       <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
                       <polyline points="16 6 12 2 8 6" />
                       <line x1="12" y1="2" x2="12" y2="15" />
                     </svg>
                   </button>
-                  <a href={buildMapsLink(entry.latitude, entry.longitude, "google")} target="_blank" rel="noreferrer">
+                  <a
+                    href={buildMapsLink(entry.latitude, entry.longitude, "google")}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Google
                   </a>
-                  <a href={buildMapsLink(entry.latitude, entry.longitude, "apple")} target="_blank" rel="noreferrer">
+                  <a
+                    href={buildMapsLink(entry.latitude, entry.longitude, "apple")}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     Apple
                   </a>
                 </div>

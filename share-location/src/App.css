@@ -3,6 +3,8 @@
   flex-direction: column;
   font: 1em sans-serif;
   padding: 1%;
+  max-width: 750px;
+  margin: 0 auto;
 }
 
 .App > * {
@@ -48,7 +50,7 @@ a {
 }
 
 .recent-header h2 {
-  font: 1.2em sans-serif;
+  font: 1em sans-serif;
   font-weight: bold;
   margin: 0;
 }
