@@ -139,7 +139,8 @@ def deploy() -> None:
 
 
 def dev() -> None:
-    """run a local web server to serve the dist/ directory for development"""
+    """build, then run a local web server to serve the dist/ directory for development"""
+    build()
     sh("python3", "-m", "http.server", "-d", str(ROOT / "dist"), "50000")
 
 
