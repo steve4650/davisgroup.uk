@@ -149,6 +149,7 @@ def fmt() -> None:
     """format and lint this repo"""
     sh("uv", "run", "ruff", "format")
     sh("uv", "run", "ruff", "check", "--fix", "--unsafe-fixes")
+    sh("bun", "i")
     sh("bun", "run", "oxlint", "--fix", "--fix-dangerously")
     sh("bun", "run", "oxfmt")
 
@@ -157,6 +158,7 @@ def lint() -> None:
     """lint this repo, including checking formatting"""
     sh("uv", "run", "ruff", "format", "--check")
     sh("uv", "run", "ruff", "check")
+    sh("bun", "i")
     sh("bun", "run", "oxlint")
     sh("bun", "run", "oxfmt", "--check")
 
