@@ -66,8 +66,7 @@
         "name": "Install uv for deploy user if missing",
         "ansible.builtin.shell": "curl -LsSf https://astral.sh/uv/install.sh | sh",
         "args": {
-          "creates": "/home/deploy/.local/bin/uv",
-          "executable": "/bin/sh"
+          "creates": "/home/deploy/.local/bin/uv"
         },
         "become": "yes",
         "become_user": "deploy",
@@ -77,13 +76,36 @@
         }
       },
       {
+        "name": "Install Bun for deploy user if missing",
+        "ansible.builtin.shell": "curl -fsSL https://bun.sh/install | bash",
+        "args": {
+          "creates": "/home/deploy/.local/bin/bun"
+        },
+        "become": "yes",
+        "become_user": "deploy",
+        "environment": {
+          "HOME": "/home/deploy",
+          "USER": "deploy"
+        }
+      },
+      {
+        "name": "Ensure Bun symlink exists for deploy user",
+        "ansible.builtin.file": {
+          "src": "/home/deploy/.bun/bin/bun",
+          "dest": "/home/deploy/.local/bin/bun",
+          "state": "link"
+        },
+        "become": "yes",
+        "become_user": "deploy"
+      },
+      {
         "name": "Copy deploy.sh to /usr/local/bin/",
         "ansible.builtin.copy": {
           "src": "deploy.sh",
           "dest": "/usr/local/bin/deploy.sh",
-          "mode": "0775",
-          "owner": "deploy",
-          "group": "deploy",
+          "mode": "0755",
+          "owner": "root",
+          "group": "root",
           "seuser": "system_u",
           "serole": "object_r",
           "setype": "bin_t",
