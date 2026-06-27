@@ -264,10 +264,22 @@ function App() {
                     type="button"
                     className="icon-button"
                     onClick={() =>
-                      navigator.share({
-                        text: `My saved location\n\nGoogle Maps link: ${buildMapsLink(entry.latitude, entry.longitude, "google")}\n\nApple Maps link: ${buildMapsLink(entry.latitude, entry.longitude, "apple")}\n\nNote: ${entry.note ?? ""}`,
-                        title: "Saved location",
-                      })
+                      navigator
+                        .share({
+                          text: `My saved location\n\nGoogle Maps link: ${buildMapsLink(
+                            entry.latitude,
+                            entry.longitude,
+                            "google",
+                          )}\n\nApple Maps link: ${buildMapsLink(
+                            entry.latitude,
+                            entry.longitude,
+                            "apple",
+                          )}`,
+                          title: "Saved location",
+                        })
+                        .catch((err) => {
+                          console.error("Error sharing:", err);
+                        })
                     }
                     title="Share location"
                   >
