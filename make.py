@@ -16,7 +16,6 @@ import subprocess
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
-NPM_APPS = ["share-location", "chikorita", "freebee"]
 
 
 def sh(*args, env=None, check=True):
@@ -29,7 +28,8 @@ def sh(*args, env=None, check=True):
 
 
 def build_npm() -> None:
-    for project in NPM_APPS:
+    """build node web projects maintained in this repo into dist/"""
+    for project in ["share-location", "chikorita", "freebee"]:
         destination = ROOT / "dist" / project
         destination.mkdir(parents=True, exist_ok=True)
         sh("bun", "i", "--cwd", str(ROOT / project))
@@ -45,6 +45,7 @@ def build_npm() -> None:
 
 
 def compress() -> None:
+    """creates .gz and .zst sidecar files for content in dist/, but only if the compressed file is smaller than the original"""
     dist_root = ROOT / "dist"
     if not dist_root.exists():
         print("No dist directory found; nothing to compress.")
@@ -66,14 +67,17 @@ def compress() -> None:
 
 
 def build_static() -> None:
+    """compile Markdown writeupes in writeups/"""
     sh("bash", str(ROOT / "writeups" / "compile"))
 
 
 def build_liturgical() -> None:
+    """builds the liturgical calendar maintained in litigurical_calendar"""
     sh("uv", "run", "liturgical_calendar/generate_ical.py")
 
 
 def csvlint() -> None:
+    """makes sure the liturgical_calendar/liturgy.csv file is valid CSV"""
     csv_file = ROOT / "liturgical_calendar" / "liturgy.csv"
     try:
         with open(csv_file, newline="", encoding="utf-8") as f:
@@ -95,10 +99,12 @@ def csvlint() -> None:
 
 
 def cp_static() -> None:
+    """copies static web files into dist/"""
     sh("rsync", "-rv", str(ROOT / "static") + "/", str(ROOT / "dist") + "/")
 
 
 def build() -> None:
+    """run all build tasks"""
     build_npm()
     build_liturgical()
     build_static()
@@ -107,6 +113,7 @@ def build() -> None:
 
 
 def deploy_test() -> None:
+    """build and run ansible playbook in check mode to test deployment"""
     build()
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
@@ -121,6 +128,7 @@ def deploy_test() -> None:
 
 
 def deploy() -> None:
+    """build and run ansible playbook to deploy to Production"""
     build()
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
@@ -133,14 +141,24 @@ def deploy() -> None:
 
 
 def dev() -> None:
+    """run a local web server to serve the dist/ directory for development"""
     sh("python3", "-m", "http.server", "-d", str(ROOT / "dist"), "50000")
 
 
 def fmt() -> None:
+    """format and lint this repo"""
     sh("uv", "run", "ruff", "format")
     sh("uv", "run", "ruff", "check", "--fix", "--unsafe-fixes")
     sh("bun", "run", "oxlint", "--fix", "--fix-dangerously")
     sh("bun", "run", "oxfmt")
+
+
+def lint() -> None:
+    """lint this repo, including checking formatting"""
+    sh("uv", "run", "ruff", "format", "--check")
+    sh("uv", "run", "ruff", "check")
+    sh("bun", "run", "oxlint")
+    sh("bun", "run", "oxfmt", "--check")
 
 
 tasks = {
@@ -155,6 +173,7 @@ tasks = {
     "deploy": deploy,
     "dev": dev,
     "fmt": fmt,
+    "lint": lint,
 }
 
 
