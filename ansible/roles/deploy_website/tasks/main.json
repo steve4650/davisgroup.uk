@@ -12,8 +12,8 @@
       {
         "name": "Decode deploy SSH keys",
         "ansible.builtin.set_fact": {
-          "deploy_ssh_private_key": "{{ vars['id_deploy'] | from_json }}",
-          "deploy_ssh_public_key": "{{ vars['id_deploy.pub'] | from_json }}"
+          "deploy_ssh_private_key": "{{ lookup('ansible.builtin.vars', 'id_deploy') | from_json }}",
+          "deploy_ssh_public_key": "{{ lookup('ansible.builtin.vars', 'id_deploy.pub') | from_json }}"
         },
         "become": "yes"
       },
@@ -89,6 +89,19 @@
         "become": "yes"
       },
       {
+        "name": "Install deploy SSH config",
+        "ansible.builtin.copy": {
+          "dest": "/home/deploy/.ssh/config",
+          "src": "ssh_config",
+          "mode": "0644",
+          "owner": "deploy",
+          "group": "deploy"
+        },
+        "become": "yes",
+        "become_user": "deploy"
+      },
+
+      {
         "name": "Install deploy SSH private key",
         "ansible.builtin.copy": {
           "dest": "/home/deploy/.ssh/id_deploy",
@@ -128,8 +141,7 @@
         "ansible.builtin.git": {
           "repo": "git@github.com:steve4650/davisgroup.uk.git",
           "dest": "/home/deploy/git/davisgroup.uk",
-          "accept_hostkey": true,
-          "key_file": "/home/deploy/.ssh/id_deploy"
+          "accept_hostkey": true
         },
         "become": "yes",
         "become_user": "deploy"
