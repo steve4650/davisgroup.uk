@@ -128,8 +128,7 @@ def deploy_test() -> None:
 
 
 def deploy() -> None:
-    """build and run ansible playbook to deploy to Production"""
-    build()
+    """run ansible playbook to deploy to Production"""
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
         "ansible-playbook",
@@ -137,7 +136,6 @@ def deploy() -> None:
         str(ROOT / "ansible" / "playbooks" / "deploy.json"),
         env=env,
     )
-    sh("rsync", "-r", "--delete", "./dist/", "steve@davisgroup.uk:/var/www/html-predeploy")
 
 
 def dev() -> None:

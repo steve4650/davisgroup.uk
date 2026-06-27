@@ -3,6 +3,13 @@
     "tags": "users",
     "block": [
       {
+        "name": "Create deploy user",
+        "ansible.builtin.user": {
+          "name": "deploy"
+        },
+        "become": "yes"
+      },
+      {
         "name": "Create steve user in wheel group",
         "ansible.builtin.user": {
           "name": "steve",

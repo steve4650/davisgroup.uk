@@ -9,7 +9,7 @@
       { "name": "chrony" },
       { "name": "dnf" },
       { "name": "andromeda" },
-      { "name": "static_files" },
+      { "name": "deploy_website" },
       { "name": "caddy" }
     ]
   }
