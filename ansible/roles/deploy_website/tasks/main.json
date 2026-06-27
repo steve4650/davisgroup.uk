@@ -23,8 +23,8 @@
           "path": "/var/www/html-predeploy",
           "state": "directory",
           "mode": "0755",
-          "owner": "steve",
-          "group": "steve",
+          "owner": "deploy",
+          "group": "deploy",
           "seuser": "system_u",
           "serole": "object_r",
           "setype": "httpd_sys_content_t",
@@ -53,8 +53,8 @@
           "path": "/var/www/secret-predeploy",
           "state": "directory",
           "mode": "0755",
-          "owner": "steve",
-          "group": "steve",
+          "owner": "deploy",
+          "group": "deploy",
           "seuser": "system_u",
           "serole": "object_r",
           "setype": "httpd_sys_content_t",
@@ -63,13 +63,27 @@
         "become": "yes"
       },
       {
+        "name": "Install uv for deploy user if missing",
+        "ansible.builtin.shell": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+        "args": {
+          "creates": "/home/deploy/.local/bin/uv",
+          "executable": "/bin/sh"
+        },
+        "become": "yes",
+        "become_user": "deploy",
+        "environment": {
+          "HOME": "/home/deploy",
+          "USER": "deploy"
+        }
+      },
+      {
         "name": "Copy deploy.sh to /usr/local/bin/",
         "ansible.builtin.copy": {
           "src": "deploy.sh",
           "dest": "/usr/local/bin/deploy.sh",
-          "mode": "0755",
-          "owner": "root",
-          "group": "root",
+          "mode": "0775",
+          "owner": "deploy",
+          "group": "deploy",
           "seuser": "system_u",
           "serole": "object_r",
           "setype": "bin_t",
