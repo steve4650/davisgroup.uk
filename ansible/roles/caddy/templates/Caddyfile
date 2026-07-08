@@ -30,6 +30,18 @@ ip.davisgroup.uk {
   respond "{% raw %}{{.RemoteIP}}{% endraw %}"
 }
 
+ip4.davisgroup.uk {
+  templates
+  header Content-Type text/plain
+  respond "{% raw %}{{.RemoteIP}}{% endraw %}"
+}
+
+ip6.davisgroup.uk {
+  templates
+  header Content-Type text/plain
+  respond "{% raw %}{{.RemoteIP}}{% endraw %}"
+}
+
 gnuplex.davisgroup.uk {
   redir / https://github.com/steve4650/gnuplex
   redir /install.sh https://raw.githubusercontent.com/steve4650/gnuplex/refs/heads/main/install_files/install.sh
