@@ -103,12 +103,21 @@ def cp_static() -> None:
     sh("rsync", "-rv", str(ROOT / "static") + "/", str(ROOT / "dist") + "/")
 
 
+def commit_hash() -> None:
+    """copies current commit hashinto dist/"""
+    # write output of `git rev-parse HEAD` to dist/commit
+    commit_file = ROOT / "dist" / "commit"
+    with open(commit_file, "w", encoding="utf-8") as f:
+        subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, stdout=f, check=True)
+
+
 def build() -> None:
     """run all build tasks"""
     build_npm()
     build_liturgical()
     build_static()
     cp_static()
+    commit_hash()
     compress()
 
 
