@@ -122,8 +122,7 @@ def build() -> None:
 
 
 def deploy_test() -> None:
-    """build and run ansible playbook in check mode to test deployment"""
-    build()
+    """run ansible playbook in check mode to test deployment"""
     env = {"ANSIBLE_CONFIG": str(ROOT / "ansible" / "ansible.cfg")}
     sh(
         "ansible-playbook",
@@ -200,7 +199,7 @@ def main() -> int:
         print_help()
         return 0
 
-    task_name = sys.argv[1]
+    task_name = sys.argv[1].lower()
 
     task = tasks.get(task_name)
     if task is None:
